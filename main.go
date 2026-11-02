@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/iam-cedano/fastcrop/internal/images"
 )
 
 func main() {
@@ -14,13 +16,22 @@ func main() {
 		os.Exit(1)
 	}
 
-	_ = args[0]
-	if _, err := strconv.Atoi(args[1]); err != nil {
+	path := args[0]
+	width, err := strconv.Atoi(args[1])
+	height, err := strconv.Atoi(args[2])
+
+	if err != nil {
 		fmt.Println("Error: ", err)
 		os.Exit(1)
 	}
-	if _, err := strconv.Atoi(args[2]); err != nil {
+
+	image := images.Image{Path: path}
+
+	err = image.Crop(width, height)
+
+	if err != nil {
 		fmt.Println("Error: ", err)
 		os.Exit(1)
 	}
+
 }

@@ -1,4 +1,4 @@
-package includes
+package images
 
 import (
 	"testing"
